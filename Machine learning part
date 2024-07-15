@@ -91,3 +91,18 @@ tflite_model = converter.convert()
 
 with open('plant_disease_model.tflite', 'wb') as f:
     f.write(tflite_model)
+
+# converting txt to binary(tflite) format
+import tensorflow as tf
+
+# Read the model from the text file
+with open('model.txt', 'r') as file:
+    model_text = file.read()
+
+# Decode the base64 string (assuming the text file contains a base64 encoded model)
+import base64
+model_bytes = base64.b64decode(model_text)
+
+# Write the binary model to a .tflite file
+with open('plant_disease_model.tflite', 'wb') as file:
+    file.write(model_bytes)
